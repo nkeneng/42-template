@@ -1,0 +1,16 @@
+name: init
+help: 42 Project generator
+version: 0.1.0
+
+args:
+- name: project_name
+  required: true
+  help: Project name in snake case
+
+flags:
+- long: --force
+  short: -f
+  help: Overwrite existing files
+
+examples:
+- init push_swap
