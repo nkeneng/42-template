@@ -6,11 +6,11 @@
 /*   By: stevennkeneng <snkeneng@student.42ber      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 19:13:25 by stevennke         #+#    #+#             */
-/*   Updated: 2024/09/09 20:32:16 by stevennke        ###   ########.fr       */
+/*   Updated: 2024/09/09 20:46:12 by stevennke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "{push_swap}.h"
+#include "project.h"
 
 int	main(int argc, char *argv[])
 {
