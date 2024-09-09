@@ -51,7 +51,7 @@ root_command() {
 
   update_main() {
     old_filename="project.h"
-    new_filename="{$project_name}.h" # Replace this with your new filename
+    new_filename="$project_name.h" # Replace this with your new filename
     sed -i '' "s/#include \"$old_filename\"/#include \"$new_filename\"/g" main.c
   }
 
