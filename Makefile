@@ -4,14 +4,18 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
+SRCS_DIR		= ./sources/
+OBJS_DIR		= ./objs/
+
 SRCS = main.c
-TEST_SRCS = $(filter-out main.c, $(SRCS))
-TESTS_FILES = $(shell find ./test -name "*_test.c")
+
+# TEST_SRCS = $(filter-out main.c, $(SRCS))
+# TESTS_FILES = $(shell find ./test -name "*_test.c")
 
 LIBFT = -Llibft -lft
 
-OBJS = $(SRCS:.c=.o)
-TEST_OBJS = $(TESTS_FILES:.c=.o)
+OBJS = $(patsubst $(SRCS_DIR)%.c,$(OBJS_DIR)%.o,$(SRCS))
+# TEST_OBJS = $(TESTS_FILES:.c=.o)
 
 all: submodules libft $(NAME)
 
@@ -37,21 +41,22 @@ libft:
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
-test: $(TEST_SRCS:.c=.o) $(TEST_OBJS)
-	$(CC) $(CFLAGS) $(TEST_SRCS:.c=.o) $(TEST_OBJS) $(LIBFT) -lcriterion -o test.out && ./test.out
+# test: $(TEST_SRCS:.c=.o) $(TEST_OBJS)
+# 	$(CC) $(CFLAGS) $(TEST_SRCS:.c=.o) $(TEST_OBJS) $(LIBFT) -lcriterion -o test.out && ./test.out
 
-%.o: %.c
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+	mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(TEST_SRCS:.c=.o) $(TEST_OBJS)
+	rm -rf $(OBJS) $(OBJS_DIR)
 	$(MAKE) -C libft clean
+	# rm -f $(TEST_SRCS:.c=.o) $(TEST_OBJS)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f test.out
 	$(MAKE) -C libft fclean
+	# rm -f test.out
 
 re: fclean all
 
